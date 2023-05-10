@@ -45,8 +45,7 @@ public class HotelManagementSystem {
         } else {
             waitingList.add(guest);
             System.out.println("Room " + room.getRoomNumber() + " is not available. " + guest.getName() + " added to waiting list.");
-        }
-    }
+        }}
 
     public void checkoutRoom(Guest guest) {
         Booking booking = null;
@@ -66,8 +65,7 @@ public class HotelManagementSystem {
         if (!waitingList.isEmpty()) {
             Guest nextGuest = waitingList.remove();
             bookRoom(nextGuest, rooms.getFirst());
-        }
-    }
+        } }
 
     public void addEmployee(Employee employee, int index) {
         employees[index] = employee;
@@ -122,8 +120,7 @@ class Room {
 
     public void setAvailable(boolean available) {
         this.available = available;
-    }
-}
+    }}
 
 class Guest {
     private String name;
