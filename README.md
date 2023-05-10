@@ -79,8 +79,7 @@ public class HotelManagementSystem {
         employees[index] = null;
         if (employee != null) {
             System.out.println("Employee " + employee.getName() + " removed from the hotel staff.");
-        }
-    }
+        }}
 
     public static void main(String[] args) {
         HotelManagementSystem system = new HotelManagementSystem();
@@ -96,8 +95,7 @@ public class HotelManagementSystem {
         Employee employee1 = new Employee("Alice", "Manager");
         system.addEmployee(employee1, 0);
         system.removeEmployee(0);
-    }
-}
+    }}
 
 class Room {
     private int roomNumber;
@@ -142,8 +140,7 @@ class Guest {
 
     public String getContact() {
         return contact;
-    }
-}
+    }}
 
 class Booking {
     private Guest guest;
@@ -178,5 +175,4 @@ class Employee {
 
     public String getRole() {
         return role;
-    }
-}
+    }}
