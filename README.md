@@ -17,12 +17,12 @@ Reporting: This feature is super handy for monitoring the hotel's performance. H
 import java.util.*;
 
 public class HotelManagementSystem {
-    LinkedList<Room> rooms;
-    Stack<Booking> bookings;
-    Queue<Guest> waitingList;
-    Employee[] employees;
-    Map<String, Guest> guests;
-
+    LinkedList<Room> rooms;  // List to store room objects
+    Stack<Booking> bookings;  // Stack to store booking objects
+    Queue<Guest> waitingList;  // Queue to store guests on the waiting list
+    Employee[] employees;  // Array to store employee objects
+    Map<String, Guest> guests;  // Map to store guest objects by name
+    
     public HotelManagementSystem() {
         rooms = new LinkedList<Room>();
         bookings = new Stack<Booking>();
@@ -30,12 +30,14 @@ public class HotelManagementSystem {
         employees = new Employee[10];
         guests = new HashMap<String, Guest>();
     }
-
+    
+    // Method to add a new room to the hotel
     public void addRoom(Room room) {
         rooms.add(room);
         System.out.println("Room " + room.getRoomNumber() + " added to the hotel.");
     }
-
+    
+    // Method to book a room for a guest
     public void bookRoom(Guest guest, Room room) {
         if (room.isAvailable()) {
             room.setAvailable(false);
@@ -45,10 +47,14 @@ public class HotelManagementSystem {
         } else {
             waitingList.add(guest);
             System.out.println("Room " + room.getRoomNumber() + " is not available. " + guest.getName() + " added to waiting list.");
-        }}
-
+        }
+    }
+    
+    // Method to checkout a guest from a room
     public void checkoutRoom(Guest guest) {
         Booking booking = null;
+    
+    //putting on some conditions
         for (Booking b : bookings) {
             if (b.getGuest().getName().equals(guest.getName())) {
                 booking = b;
@@ -65,20 +71,25 @@ public class HotelManagementSystem {
         if (!waitingList.isEmpty()) {
             Guest nextGuest = waitingList.remove();
             bookRoom(nextGuest, rooms.getFirst());
-        } }
-
+        }
+    }
+    
+    // Method to add a new employee to the hotel staff
     public void addEmployee(Employee employee, int index) {
         employees[index] = employee;
         System.out.println("Employee " + employee.getName() + " added to the hotel staff.");
     }
-
+    
+    // Method to remove an employee from the hotel staff
     public void removeEmployee(int index) {
         Employee employee = employees[index];
         employees[index] = null;
         if (employee != null) {
             System.out.println("Employee " + employee.getName() + " removed from the hotel staff.");
-        }}
-
+        }
+    }
+    
+    //Testing the system
     public static void main(String[] args) {
         HotelManagementSystem system = new HotelManagementSystem();
         Room room1 = new Room(101, "Standard", true);
@@ -93,83 +104,92 @@ public class HotelManagementSystem {
         Employee employee1 = new Employee("Alice", "Manager");
         system.addEmployee(employee1, 0);
         system.removeEmployee(0);
-    }}
+    }
+}
 
+//Room  class and its properties
 class Room {
     private int roomNumber;
     private String roomType;
     private boolean available;
-
+    
     public Room(int roomNumber, String roomType, boolean available) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
-        this.available = available;
+        this.available=available;
     }
-
+    
     public int getRoomNumber() {
         return roomNumber;
     }
-
+    
     public String getRoomType() {
         return roomType;
     }
-
+    
     public boolean isAvailable() {
         return available;
     }
-
+    
     public void setAvailable(boolean available) {
         this.available = available;
-    }}
+    }
+}
 
+
+//Guest  class and its properties
 class Guest {
     private String name;
     private String contact;
-
+    
     public Guest(String name, String contact) {
         this.name = name;
         this.contact = contact;
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public String getContact() {
         return contact;
-    }}
-
+    }
+}
+    
+//Booking  class and its properties
 class Booking {
     private Guest guest;
     private Room room;
-
+    
     public Booking(Guest guest, Room room) {
         this.guest = guest;
         this.room = room;
     }
-
+    
     public Guest getGuest() {
         return guest;
     }
-
+    
     public Room getRoom() {
         return room;
     }
 }
-
+    
+//Employee  class and its properties
 class Employee {
     private String name;
     private String role;
-
+    
     public Employee(String name, String role) {
         this.name = name;
         this.role = role;
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public String getRole() {
         return role;
-    }}
+    }
+}
